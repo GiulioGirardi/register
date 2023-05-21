@@ -24,7 +24,7 @@ public class StudentController {
     }
 
 
-    @PostMapping("/register/student")
+    @PostMapping("/student/register")
     public ResponseEntity<StudentEntity> registerStudent(@RequestBody StudentDTO studentDTO) {
         StudentEntity studentEntity = new StudentEntity();
         BeanUtils.copyProperties(studentDTO, studentEntity);
