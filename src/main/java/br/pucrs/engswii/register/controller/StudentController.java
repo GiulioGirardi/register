@@ -7,11 +7,9 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -39,4 +37,23 @@ public class StudentController {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
+    @GetMapping("/student/{registration_number}")
+    public ResponseEntity<StudentEntity> getStudentByRegistrationNumber(@PathVariable(value = "registration_number") Long registrationNumber) {
+        Optional<StudentEntity> optionalStudentEntity = studentService.findByRegistrationNumber(registrationNumber);
+
+        if (optionalStudentEntity.isPresent()) {
+            return new ResponseEntity<>(optionalStudentEntity.get(), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    @GetMapping("/student/allstudents")
+    public ResponseEntity<List<StudentEntity>> getAllStudents() {
+        List<StudentEntity> listStudentEntities = studentService.findAllStudents();
+
+        if(!listStudentEntities.isEmpty()){
+            return new ResponseEntity<>(listStudentEntities, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 }
