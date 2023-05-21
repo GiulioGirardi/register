@@ -37,7 +37,7 @@ public class StudentController {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
-    @GetMapping("/student/{registration_number}")
+    @GetMapping("/student/search-registration/{registration_number}")
     public ResponseEntity<StudentEntity> getStudentByRegistrationNumber(@PathVariable(value = "registration_number") Long registrationNumber) {
         Optional<StudentEntity> optionalStudentEntity = studentService.findByRegistrationNumber(registrationNumber);
 
@@ -47,13 +47,24 @@ public class StudentController {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
-    @GetMapping("/student/allstudents")
-    public ResponseEntity<List<StudentEntity>> getAllStudents() {
-        List<StudentEntity> listStudentEntities = studentService.findAllStudents();
+    @GetMapping("/student/search-name/{name}")
+    public ResponseEntity<List<StudentEntity>> getStudentsByName(@PathVariable(value = "name") String name) {
+        List<StudentEntity> listStudentEntities = studentService.findByName(name);
 
-        if(!listStudentEntities.isEmpty()){
+        if (!listStudentEntities.isEmpty()) {
             return new ResponseEntity<>(listStudentEntities, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+
+    @GetMapping("/student/search-all-students")
+    public ResponseEntity<List<StudentEntity>> getAllStudents() {
+        List<StudentEntity> listStudentEntities = studentService.findAllStudents();
+
+        if (!listStudentEntities.isEmpty()) {
+            return new ResponseEntity<>(listStudentEntities, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
 }

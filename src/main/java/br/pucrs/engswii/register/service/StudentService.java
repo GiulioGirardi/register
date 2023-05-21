@@ -28,4 +28,8 @@ public class StudentService {
     public List<StudentEntity> findAllStudents() {
         return studentRepository.findAll();
     }
+
+    public List<StudentEntity> findByName(String name) {
+        return studentRepository.findStudentEntitiesByNameContaining(name);
+    }
 }
