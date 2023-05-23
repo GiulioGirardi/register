@@ -1,8 +1,8 @@
-package br.pucrs.engswii.register.controller;
+package br.pucrs.engswii.register.student.controller;
 
-import br.pucrs.engswii.register.dto.StudentDTO;
-import br.pucrs.engswii.register.entity.StudentEntity;
-import br.pucrs.engswii.register.service.StudentService;
+import br.pucrs.engswii.register.student.entity.StudentEntity;
+import br.pucrs.engswii.register.student.service.StudentService;
+import br.pucrs.engswii.register.student.dto.StudentDTO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

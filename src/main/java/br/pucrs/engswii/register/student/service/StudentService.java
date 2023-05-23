@@ -1,7 +1,7 @@
-package br.pucrs.engswii.register.service;
+package br.pucrs.engswii.register.student.service;
 
-import br.pucrs.engswii.register.entity.StudentEntity;
-import br.pucrs.engswii.register.repository.StudentRepository;
+import br.pucrs.engswii.register.student.entity.StudentEntity;
+import br.pucrs.engswii.register.student.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

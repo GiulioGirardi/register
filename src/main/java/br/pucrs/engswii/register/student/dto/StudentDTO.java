@@ -1,4 +1,4 @@
-package br.pucrs.engswii.register.dto;
+package br.pucrs.engswii.register.student.dto;
 
 import lombok.*;
 

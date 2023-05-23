@@ -1,6 +1,6 @@
-package br.pucrs.engswii.register.repository;
+package br.pucrs.engswii.register.student.repository;
 
-import br.pucrs.engswii.register.entity.StudentEntity;
+import br.pucrs.engswii.register.student.entity.StudentEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
