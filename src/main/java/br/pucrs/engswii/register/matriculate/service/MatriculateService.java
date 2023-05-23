@@ -26,6 +26,12 @@ public class MatriculateService {
         return matriculateRepository.findMatriculateEntitiesByRegistrationStudent(registrationStudent);
     }
 
-//    public
+    public List<MatriculateEntity> findBySubjectCode(String subjectCode){
+        return matriculateRepository.findMatriculateEntitiesBySubjectCode(subjectCode);
+    }
+
+    public List<MatriculateEntity> findBySubjectClass(Long subjectClass){
+        return matriculateRepository.findMatriculateEntitiesBySubjectClass(subjectClass);
+    }
 
 }

@@ -8,11 +8,9 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -22,20 +20,50 @@ public class MatriculateController {
     private MatriculateService matriculateService;
 
     @Autowired
-    public MatriculateController(MatriculateService matriculateService){
+    public MatriculateController(MatriculateService matriculateService) {
         this.matriculateService = matriculateService;
     }
 
     @PostMapping("/matriculate/register")
-    public ResponseEntity<MatriculateEntity> registerMatriculates(@RequestBody MatriculateDTO matriculateDTO){
+    public ResponseEntity<MatriculateEntity> registerMatriculates(@RequestBody MatriculateDTO matriculateDTO) {
         MatriculateEntity matriculateEntity = new MatriculateEntity();
         BeanUtils.copyProperties(matriculateDTO, matriculateEntity);
 
         Optional<MatriculateEntity> optionalMatriculateEntity = matriculateService.saveMatriculates(matriculateEntity);
 
-        if(optionalMatriculateEntity.isPresent()){
-            return new ResponseEntity<>(optionalMatriculateEntity.get(),HttpStatus.CREATED);
+        if (optionalMatriculateEntity.isPresent()) {
+            return new ResponseEntity<>(optionalMatriculateEntity.get(), HttpStatus.CREATED);
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    @GetMapping("/matriculate/search-subject-student/{registration_number}")
+    public ResponseEntity<List<MatriculateEntity>> getSubjectMatriculatesByStudent(@PathVariable(value = "registration_number") Long registrationNumber) {
+        List<MatriculateEntity> listMatriculatesEntities = matriculateService.findByRegistrationStudent(registrationNumber);
+
+        if (!listMatriculatesEntities.isEmpty()) {
+            return new ResponseEntity<>(listMatriculatesEntities, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/matriculate/search-subject-code/{subject_code}")
+    public ResponseEntity<List<MatriculateEntity>> getSubjectMatriculatesBySubjectCode(@PathVariable(value = "subject_code") String subjectCode) {
+        List<MatriculateEntity> listMatriculatesEntities = matriculateService.findBySubjectCode(subjectCode);
+
+        if (!listMatriculatesEntities.isEmpty()) {
+            return new ResponseEntity<>(listMatriculatesEntities, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/matriculate/search-subject-class/{subject_class}")
+    public ResponseEntity<List<MatriculateEntity>> getSubjectMatriculatesBySubjectClass(@PathVariable(value = "subject_class") Long subjectClass) {
+        List<MatriculateEntity> listMatriculatesEntities = matriculateService.findBySubjectClass(subjectClass);
+
+        if (!listMatriculatesEntities.isEmpty()) {
+            return new ResponseEntity<>(listMatriculatesEntities, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }
