@@ -1,0 +1,296 @@
+{
+	"info": {
+		"_postman_id": "7ceafa5e-29e5-4f60-8cdf-5e7b14a6b7a6",
+		"name": "T1 - Engenharia de software 2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11997841"
+	},
+	"item": [
+		{
+			"name": "T1",
+			"item": [
+				{
+					"name": "Estudante",
+					"item": [
+						{
+							"name": "Cadastra estudante",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Teste\",\r\n    \"documentNumber\": \"12\",\r\n    \"address\": \"sadjasj\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/student-register/v1/student/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"student-register",
+										"v1",
+										"student",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Busca estudante",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/student-register/v1/student/search-registration/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"student-register",
+										"v1",
+										"student",
+										"search-registration",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Busca todos estudantes",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/student-register/v1/student/search-all-students",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"student-register",
+										"v1",
+										"student",
+										"search-all-students"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Busca estudantes por nome",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/student-register/v1/student/search-name/Gi",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"student-register",
+										"v1",
+										"student",
+										"search-name",
+										"Gi"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Disciplina",
+					"item": [
+						{
+							"name": "Cadastra disciplina",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"subjectCode\": \"TesteSubject 1\",\r\n    \"subjectName\": \"TesteSubjectName\",\r\n    \"subjectSchedule\": \"AB\",\r\n    \"subjectClass\": 10\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/subject-register/v1/subject/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"subject-register",
+										"v1",
+										"subject",
+										"register"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Matricula",
+					"item": [
+						{
+							"name": "Cadastra matricula",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"registrationStudent\": 1,\r\n    \"subjectCode\": \"TesteSubject 1\",\r\n    \"subjectClass\": 10\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/matriculate-register/v1/matriculate/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"matriculate-register",
+										"v1",
+										"matriculate",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Busca matriculas de estudante",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/matriculate-register/v1/matriculate/search-subject-student/10",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"matriculate-register",
+										"v1",
+										"matriculate",
+										"search-subject-student",
+										"10"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Busca estudantes por código de disciplina",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/matriculate-register/v1/matriculate/search-subject-code/asd",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"matriculate-register",
+										"v1",
+										"matriculate",
+										"search-subject-code",
+										"asd"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Busca estudantes por turma",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/matriculate-register/v1/matriculate/search-subject-class/10",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"matriculate-register",
+										"v1",
+										"matriculate",
+										"search-subject-class",
+										"10"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Usuário sistema",
+					"item": [
+						{
+							"name": "Cadastra usuário sistema",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"testeUser\",\r\n    \"email\": \"teste2@gmail.com\",\r\n    \"password\": \"userpassword\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/user-register/v1/user/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"user-register",
+										"v1",
+										"user",
+										"register"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
