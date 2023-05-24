@@ -12,11 +12,11 @@ public class SubjectService {
     private SubjectRepository subjectRepository;
 
     @Autowired
-    public SubjectService(SubjectRepository subjectRepository){
+    public SubjectService(SubjectRepository subjectRepository) {
         this.subjectRepository = subjectRepository;
     }
 
-    public Optional<SubjectEntity> saveSubject(SubjectEntity subjectEntity){
+    public Optional<SubjectEntity> saveSubject(SubjectEntity subjectEntity) {
         return Optional.ofNullable(subjectRepository.save(subjectEntity));
     }
 

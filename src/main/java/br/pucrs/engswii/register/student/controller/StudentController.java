@@ -1,8 +1,8 @@
 package br.pucrs.engswii.register.student.controller;
 
+import br.pucrs.engswii.register.student.dto.StudentDTO;
 import br.pucrs.engswii.register.student.entity.StudentEntity;
 import br.pucrs.engswii.register.student.service.StudentService;
-import br.pucrs.engswii.register.student.dto.StudentDTO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,7 +26,7 @@ public class StudentController {
 
     @PostMapping("/student/register")
     public ResponseEntity<StudentEntity> registerStudent(@RequestBody StudentDTO studentDTO) {
-        StudentEntity studentEntity = new StudentEntity();
+        StudentEntity studentEntity = StudentEntity.builder().build();
         BeanUtils.copyProperties(studentDTO, studentEntity);
 
         Optional<StudentEntity> optionalStudentEntity = studentService.saveStudent(studentEntity);
@@ -44,7 +44,7 @@ public class StudentController {
         if (optionalStudentEntity.isPresent()) {
             return new ResponseEntity<>(optionalStudentEntity.get(), HttpStatus.OK);
         }
-        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @GetMapping("/student/search-name/{name}")
@@ -66,5 +66,4 @@ public class StudentController {
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-
 }

@@ -1,8 +1,8 @@
 package br.pucrs.engswii.register.matriculate.controller;
 
-
 import br.pucrs.engswii.register.matriculate.dto.MatriculateDTO;
 import br.pucrs.engswii.register.matriculate.entity.MatriculateEntity;
+import br.pucrs.engswii.register.matriculate.exception.StudentAlreadyMatriculateException;
 import br.pucrs.engswii.register.matriculate.service.MatriculateService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +25,13 @@ public class MatriculateController {
     }
 
     @PostMapping("/matriculate/register")
-    public ResponseEntity<MatriculateEntity> registerMatriculates(@RequestBody MatriculateDTO matriculateDTO) {
-        MatriculateEntity matriculateEntity = new MatriculateEntity();
+    public ResponseEntity<MatriculateEntity> registerMatriculates(@RequestBody MatriculateDTO matriculateDTO) throws StudentAlreadyMatriculateException {
+        MatriculateEntity matriculateEntity = MatriculateEntity.builder().build();
         BeanUtils.copyProperties(matriculateDTO, matriculateEntity);
+
+        if (matriculateService.studentAlreadyMatriculates(matriculateEntity)) {
+            throw new StudentAlreadyMatriculateException();
+        }
 
         Optional<MatriculateEntity> optionalMatriculateEntity = matriculateService.saveMatriculates(matriculateEntity);
 

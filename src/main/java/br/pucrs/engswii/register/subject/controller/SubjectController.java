@@ -21,19 +21,19 @@ public class SubjectController {
     private SubjectService subjectService;
 
     @Autowired
-    public SubjectController(SubjectService subjectService){
+    public SubjectController(SubjectService subjectService) {
         this.subjectService = subjectService;
     }
 
 
     @PostMapping("/subject/register")
-    public ResponseEntity<SubjectEntity> registerSubject(@RequestBody SubjectDTO subjectDTO){
-        SubjectEntity subjectEntity = new SubjectEntity();
+    public ResponseEntity<SubjectEntity> registerSubject(@RequestBody SubjectDTO subjectDTO) {
+        SubjectEntity subjectEntity = SubjectEntity.builder().build();
         BeanUtils.copyProperties(subjectDTO, subjectEntity);
 
         Optional<SubjectEntity> optionalSubjectEntity = subjectService.saveSubject(subjectEntity);
 
-        if(optionalSubjectEntity.isPresent()){
+        if (optionalSubjectEntity.isPresent()) {
             return new ResponseEntity<>(optionalSubjectEntity.get(), HttpStatus.CREATED);
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

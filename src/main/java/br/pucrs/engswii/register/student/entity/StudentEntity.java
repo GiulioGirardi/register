@@ -4,10 +4,10 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Builder
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "student")
 public class StudentEntity {
@@ -15,10 +15,12 @@ public class StudentEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long registrationNumber;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     String name;
-    @Column(name = "document_number")
+
+    @Column(name = "document_number", unique = true)
     String documentNumber;
+
     @Column(name = "address")
     String address;
 }

@@ -9,6 +9,8 @@ import java.util.List;
 @Repository
 public interface MatriculateRepository extends JpaRepository<MatriculateEntity, Long> {
     List<MatriculateEntity> findMatriculateEntitiesByRegistrationStudent(Long registrationStudent);
+
     List<MatriculateEntity> findMatriculateEntitiesBySubjectCode(String subjectCode);
+
     List<MatriculateEntity> findMatriculateEntitiesBySubjectClass(Long subjectClass);
 }
